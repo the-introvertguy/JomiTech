@@ -1,0 +1,12 @@
+services:
+  - type: web
+    name: jomitech-backend
+    env: python
+    plan: free
+    buildCommand: pip install -r backend/requirements.txt
+    startCommand: python -m uvicorn backend.app.main:app --host 0.0.0.0 --port $PORT
+    envVars:
+      - key: PYTHONPATH
+        value: .
+      - key: DEMO_MODE
+        value: "true"
