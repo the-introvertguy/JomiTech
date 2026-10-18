@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { useApp } from '@/context/AppContext';
+import { API_BASE_URL } from '@/lib/api';
 import {
   History,
   Shield,
@@ -41,7 +42,7 @@ export default function AuditPage() {
   const fetchAuditLogs = async () => {
     setLoading(true);
     try {
-      const res = await fetch('http://127.0.0.1:8000/api/v1/audit-logs?limit=100');
+      const res = await fetch(`${API_BASE_URL}/audit-logs?limit=100`);
       if (res.ok) {
         const data = await res.json();
         setLogs(data);

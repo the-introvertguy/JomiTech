@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { useApp } from '@/context/AppContext';
+import { API_BASE_URL } from '@/lib/api';
 import {
   FileSpreadsheet,
   CheckSquare,
@@ -97,7 +98,7 @@ export default function MutationCasesPage() {
   const fetchCases = async () => {
     setLoading(true);
     try {
-      const res = await fetch('http://127.0.0.1:8000/api/v1/mutation-cases');
+      const res = await fetch(`${API_BASE_URL}/mutation-cases`);
       if (res.ok) {
         const data = await res.json();
         setCases(data);
@@ -121,7 +122,7 @@ export default function MutationCasesPage() {
     if (!selectedCaseId) return;
     const fetchDetail = async () => {
       try {
-        const res = await fetch(`http://127.0.0.1:8000/api/v1/mutation-cases/${selectedCaseId}`);
+        const res = await fetch(`${API_BASE_URL}/mutation-cases/${selectedCaseId}`);
         if (res.ok) {
           const data = await res.json();
           setSelectedCase(data);
@@ -169,7 +170,7 @@ export default function MutationCasesPage() {
     });
 
     try {
-      const res = await fetch(`http://127.0.0.1:8000/api/v1/mutation-cases/${selectedCase.id}/transition`, {
+      const res = await fetch(`${API_BASE_URL}/mutation-cases/${selectedCase.id}/transition`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({

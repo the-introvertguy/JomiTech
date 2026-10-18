@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import { useApp } from '@/context/AppContext';
+import { API_BASE_URL } from '@/lib/api';
 import {
   GitPullRequest,
   Search,
@@ -62,7 +63,7 @@ export default function TrackMutationPage() {
     setResult(null);
 
     try {
-      const res = await fetch(`http://127.0.0.1:8000/api/v1/public/mutation-track/${encodeURIComponent(query)}`);
+      const res = await fetch(`${API_BASE_URL}/public/mutation-track/${encodeURIComponent(query)}`);
       if (!res.ok) {
         if (res.status === 404) {
           throw new Error(

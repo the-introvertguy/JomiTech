@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { useApp } from '@/context/AppContext';
+import { API_BASE_URL } from '@/lib/api';
 import {
   Archive,
   Search,
@@ -48,7 +49,7 @@ export default function ArchivePage() {
     const fetchArchive = async () => {
       setLoading(true);
       try {
-        const res = await fetch('http://127.0.0.1:8000/api/v1/parcels');
+        const res = await fetch(`${API_BASE_URL}/parcels`);
         if (res.ok) {
           const data = await res.json();
           // Transform parcel summaries into archive entries

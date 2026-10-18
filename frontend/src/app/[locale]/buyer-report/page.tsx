@@ -4,6 +4,7 @@ import React, { useState, useEffect } from 'react';
 import { useSearchParams } from 'next/navigation';
 import Link from 'next/link';
 import { useApp } from '@/context/AppContext';
+import { API_BASE_URL } from '@/lib/api';
 import { CadastralLogo } from '@/components/CadastralLogo';
 import {
   FileSearch,
@@ -171,8 +172,8 @@ export default function BuyerReportPage() {
       setError(null);
       try {
         const [parcelRes, riskRes] = await Promise.all([
-          fetch(`http://127.0.0.1:8000/api/v1/parcels/${selectedParcelId}`),
-          fetch(`http://127.0.0.1:8000/api/v1/parcels/${selectedParcelId}/risk`),
+          fetch(`${API_BASE_URL}/parcels/${selectedParcelId}`),
+          fetch(`${API_BASE_URL}/parcels/${selectedParcelId}/risk`),
         ]);
 
         if (!parcelRes.ok) {
