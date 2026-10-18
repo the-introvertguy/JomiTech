@@ -28,6 +28,8 @@ Thumbs.db
 .vscode/
 .idea/
 .agents/
+.vercel/
+frontend/.vercel/
 
 # Uploaded document scans (keep sample fixtures)
 storage/documents/*
